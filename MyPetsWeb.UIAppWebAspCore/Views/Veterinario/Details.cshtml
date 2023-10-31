@@ -1,0 +1,36 @@
+﻿@model SysMyPets.EntidadesDeNegocio.Veterinario
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1>Detalle de veterinario</h1>
+
+<div>
+    <h4>Veterinario</h4>
+    <hr />
+   
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dui)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dui)
+        </dd>
+   
+</div>
+<div>
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.Id}, new {@class = "btn btn-outline-success"}) |
+    <a asp-action="Index">Regresar a la lista</a>
+</div>

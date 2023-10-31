@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SysMyPets.EntidadesDeNegocio.Servicio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Servicio</h1>
+
+<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="Mypets" class="btn btn-link">
+    <img src="/WhhPlussign.svg" />
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Servicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <!-- Aquí puedes agregar los campos del formulario dentro del modal -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Veterinario.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDeServicio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Veterinario.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoDeServicio)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-success" }) |
+                    @Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    var exampleModal = document.getElementById('exampleModal');
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var recipient = button.getAttribute('data-bs-whatever');
+
+        $.get('/Servicio/Create2', function (data) {
+            var modalTitle = exampleModal.querySelector('.modal-title');
+            modalTitle.textContent = 'Servicio ' + recipient;
+
+            var modalBody = exampleModal.querySelector('.modal-body');
+            modalBody.innerHTML = data;
+        });
+    });
+</script>
+
+<style>
+
+    .modal .header{
+        display: none;
+    }
+
+    .modal .nav{
+        display: none;
+    }
+
+    .modal .l-navbar{
+        display: none;
+    }
+
+    .modal .footer {
+        display: none;
+        display: none;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Estilo personalizado para el botón dentro del modal */
+    .modal button.btn-link {
+        border: none;
+        padding: 0;
+        background: none;
+        text-decoration: underline;
+        color: #007bff; /* Cambia el color de texto según tu preferencia */
+    }
+</style>

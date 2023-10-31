@@ -1,0 +1,49 @@
+﻿@model SysMyPets.EntidadesDeNegocio.Servicio
+
+@{
+    ViewData["Title"] = "Edit";
+   
+    List<SysMyPets.EntidadesDeNegocio.Veterinario> veterinarios = ViewBag.Veterinarios as List<SysMyPets.EntidadesDeNegocio.Veterinario>;
+}
+
+<h1>Edit</h1>
+
+<h4>Servicio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+         
+            <div class="form-group">
+                <label asp-for="TipoDeServicio" class="control-label"></label>
+                <input asp-for="TipoDeServicio" class="form-control" />
+                <span asp-validation-for="TipoDeServicio" class="text-danger"></span>
+            </div>
+          
+           <div class="form-group">
+                <label asp-for="IdVeterinario" class="control-label"></label>
+                <select asp-for="IdVeterinario" class="form-control">
+                    @foreach (var item in veterinarios)
+                    {
+                        <option value="@item.Id">@item.Nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="IdVeterinario" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<SysMyPets.EntidadesDeNegocio.Veterinario>
+
+@{
+    ViewData["Title"] = "Lista de veterinario";
+}
+
+<style>
+    .veterinario{
+        text-align: center;
+    }
+</style>
+<br />
+
+<h1 class="veterinario">Lista De Veterinario</h1>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="Mypets">Agregar</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+              @* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>*@ 
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-striped table-orange">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dui)
+            </th>
+            <th colspan="3">Acciones</th>
+
+
+        
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dui)
+            </td>
+                
+           
+            <td>
+                    @Html.ActionLink("Editar", "Edit", new {  id=item.Id}, new {@class ="btn btn-outline-success" }) |
+                    @Html.ActionLink("Detalle", "Details", new {  id=item.Id}, new {@class = "btn btn-outline-secondary" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new {  id=item.Id}, new {@class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script>
+    var exampleModal = document.getElementById('exampleModal');
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var recipient = button.getAttribute('data-bs-whatever');
+
+        $.get('/Veterinario/Create', function (data) {
+            var modalTitle = exampleModal.querySelector('.modal-title');
+            modalTitle.textContent = 'Veterinario' + recipient;
+
+            var modalBody = exampleModal.querySelector('.modal-body');
+            modalBody.innerHTML = data;
+        });
+    });
+
+</script>
+
+
+<style>
+.modal .header{
+        display: none;
+    }
+
+    .modal .nav{
+        display: none;
+    }
+
+    .modal .l-navbar{
+        display: none;
+    }
+
+    .modal .footer {
+        display: none;
+        display: none;
+    }  
+</style>

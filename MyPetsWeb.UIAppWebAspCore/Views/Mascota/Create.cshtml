@@ -1,0 +1,89 @@
+﻿@model SysMyPets.EntidadesDeNegocio.Mascota
+
+@{
+    ViewData["Title"] = "Create";
+    List<SysMyPets.EntidadesDeNegocio.Usuario> usuarios = ViewBag.Usuarios as List<SysMyPets.EntidadesDeNegocio.Usuario>;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre"  />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Sexo</label>
+                        <input type="text" class="form-control" name="sexo" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Edad</label>
+                        <input type="text" class="form-control" name="edad" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Raza</label>
+                        <input type="text" class="form-control" name="raza" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">SenialesParticulares</label>
+                        <input type="text" class="form-control" name="senialesParticulares" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Especie</label>
+                        <input type="text" class="form-control" name="especie" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Propietario</label>
+                        <input type="text" class="form-control" name="propietario" />
+                    </div>
+                </div>
+
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Usuario" class="control-label"></label>
+                        <select asp-for="IdUsuario" class="form-control">
+                            <option selected value="">SELECCIONAR</option>
+                            @foreach (var item in usuarios)
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        </select>
+                        <span asp-validation-for="IdUsuario" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+               
+                <div class="col-md-12">
+                        <br />
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-info" />
+                        <a asp-action="Index" class="btn btn-info">Cancelar</a>
+                    </div>
+                    <span class="text-danger">@ViewBag.Error</span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

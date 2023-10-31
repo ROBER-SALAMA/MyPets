@@ -1,0 +1,55 @@
+﻿@model SysMyPets.EntidadesDeNegocio.Servicio
+
+@{
+    ViewData["Title"] = "Crear2";
+    List<SysMyPets.EntidadesDeNegocio.Veterinario> veterinarios = ViewBag.Veterinarios as List<SysMyPets.EntidadesDeNegocio.Veterinario>;
+}
+
+
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="mb-3 ">
+                <label asp-for="IdVeterinario" class="control-label "></label>
+                <select asp-for="IdVeterinario" class="form-control">
+                    @foreach (var item in veterinarios)
+                    {
+                        <option value="@item.Id">@item.Nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="IdVeterinario" class="text-danger  spaced-input"></span>
+            </div>
+
+            <div class=" mb-3">
+                <label asp-for="TipoDeServicio" class="control-labe text-capitalize"l"></label>
+                <input asp-for="TipoDeServicio" class="form-control" />
+                <span asp-validation-for="TipoDeServicio" class="text-danger spaced-input"></span>
+            </div>
+            <hr /> 
+            <div class="button-container">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+
+</style>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

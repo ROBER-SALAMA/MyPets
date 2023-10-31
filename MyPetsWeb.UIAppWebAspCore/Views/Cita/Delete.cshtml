@@ -1,0 +1,44 @@
+﻿@model SysMyPets.EntidadesDeNegocio.Cita
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar Cita</h1>
+
+<h3>Estas seguro de eliminar esta cita</h3>
+<div>
+    <h4>Cita</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Diagnostico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Propietario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoCita)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdMascota)
+        </dt>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Top_Aux)
+        </dt>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-dark">Cancelar</a>
+    </form>
+</div>
